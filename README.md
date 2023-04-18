@@ -18,7 +18,6 @@
 
 `yarn test`
 
-
 Here is some more information on the concept in case you're curious:
 
 [https://launchdarkly.com/blog/what-are-feature-flags/](https://launchdarkly.com/blog/what-are-feature-flags/)
