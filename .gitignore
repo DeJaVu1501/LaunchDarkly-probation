@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/LaunchDarkly-probation.iml
+/.idea/git_toolbox_prj.xml
