@@ -1,11 +1,12 @@
 import React from "react";
-import { useMedication } from "../mock-data";
+import { useMedication } from "../services/mock-data";
 import { RequestReviewButton } from "./request-review-button";
 import { useFlags } from "launchdarkly-react-client-sdk";
 import {
   detailsCtaFlagKey,
   profileSectionFlagKey,
-} from "../feature-flag-config";
+  AllFeatureFlags,
+} from "../services/feature-flag";
 
 // Problem:
 //     This should be conditionally rendered based on feature flag enrolment.
@@ -25,12 +26,10 @@ const generateEmptyFeaturesTemplate = (profileSectionFeatureValue) => {
 
 export const MedicationDetails = () => {
   const medication = useMedication();
-  const flags = useFlags<{
-    [profileSectionFlagKey]: "not-enrolled" | "control" | "variation";
-    [detailsCtaFlagKey]: `#${string}`;
-  }>();
+  const flags = useFlags<AllFeatureFlags>();
+
   const profileSectionFeatureValue = flags[profileSectionFlagKey];
-  const buttonColor = flags[detailsCtaFlagKey];
+  const detailsCtaFeatureValue = flags[detailsCtaFlagKey];
 
   if (profileSectionFeatureValue === "variation") {
     return (
@@ -40,7 +39,7 @@ export const MedicationDetails = () => {
           <li>Warning signs: {medication.warnings}</li>
         </ul>
         <p>Experiencing any of these? Please contact your doctor</p>
-        <RequestReviewButton backgroundColor={buttonColor} />
+        <RequestReviewButton backgroundColor={detailsCtaFeatureValue} />
       </div>
     );
   }
@@ -51,5 +50,5 @@ export const MedicationDetails = () => {
   if (profileSectionFeatureValue === "control")
     generateEmptyFeaturesTemplate(profileSectionFeatureValue);
 
-  return <></>;
+  return <>Error template</>;
 };

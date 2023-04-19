@@ -1,4 +1,5 @@
 import React from "react";
+import { Color } from "../services/feature-flag";
 
 // Problem:
 //     This should be coloured based on FF value
@@ -7,16 +8,11 @@ import React from "react";
 // Setup:
 //     Fill background color with flag value.
 
-type RGB = `rgb(${number}, ${number}, ${number})`;
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
-type HEX = `#${string}`;
-
-type Color = RGB | RGBA | HEX;
 interface RequestReviewButtonProps {
   backgroundColor: Color;
 }
 export const RequestReviewButton: React.FC<RequestReviewButtonProps> = ({
-  backgroundColor,
+  backgroundColor = "#FFFFFF",
 }) => {
   return <button style={{ backgroundColor }}>Request doctor review</button>;
 };
