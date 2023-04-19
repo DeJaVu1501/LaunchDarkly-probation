@@ -9,7 +9,7 @@ import { Color } from "../services/feature-flag";
 //     Fill background color with flag value.
 
 interface RequestReviewButtonProps {
-  backgroundColor: Color;
+  backgroundColor?: Color;
 }
 export const RequestReviewButton: React.FC<RequestReviewButtonProps> = ({
   backgroundColor = "#FFFFFF",
