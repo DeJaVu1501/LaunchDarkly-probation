@@ -9,7 +9,9 @@ import "./index.css";
 (async () => {
   const LDProvider = await asyncWithLDProvider({
     clientSideID: process.env.REACT_APP_LAUNCH_DARKLY_CLIENT_ID!,
-    reactOptions: {},
+    reactOptions: {
+      useCamelCaseFlagKeys: false,
+    },
   });
 
   ReactDOM.render(

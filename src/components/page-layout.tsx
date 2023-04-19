@@ -1,4 +1,6 @@
 import React from "react";
+import { launchBannerFlagKey } from "../feature-flag-config";
+import { LDFlagKeyMap, useFlags } from "launchdarkly-react-client-sdk";
 
 // Problem:
 //     This should be conditionally rendered based on feature flag enrolment.
@@ -19,9 +21,11 @@ export const PageLayout = ({
   children: React.ReactNode;
   className: string;
 }) => {
+  const flags = useFlags();
+
   return (
     <div className={`page-layout ${className}`}>
-      <PromotionalBanner />
+      {flags[launchBannerFlagKey] && <PromotionalBanner />}
       {children}
     </div>
   );
